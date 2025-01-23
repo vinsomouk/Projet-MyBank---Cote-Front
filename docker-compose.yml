@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  react:
+    build:
+      context: .
+      dockerfile: DockerFile  # Assurez-vous que le nom est correct
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
