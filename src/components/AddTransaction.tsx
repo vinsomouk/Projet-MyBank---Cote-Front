@@ -29,10 +29,10 @@ const AddTransaction: React.FC = () => {
             <input type="text" placeholder="Libellé" onChange={(e) => setLabel(e.target.value)} />
             <input type="text" placeholder="Catégorie" onChange={(e) => setCategory(e.target.value)} />
             <select onChange={(e) => setType(e.target.value as 'ajout' | 'envoi')}>
-                <option value="ajout">Ajout</option>
-                <option value="envoi">Envoi</option>
+                <option value="ajout">Add</option>
+                <option value="envoi">Send</option>
             </select>
-            <button type="submit">Ajouter Transaction</button>
+            <button type="submit">Add Transaction</button>
         </form>
     );
 };

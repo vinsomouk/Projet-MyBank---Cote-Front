@@ -1,18 +1,22 @@
-// src/services/userService.ts
-import axios from '../axiosConfig.tsx';
+import axios from '../axiosConfig';
 
+// ✅ Interface pour l'inscription
 export interface UserData {
-    name: string;
-    email: string;
-    password: string;
+  name: string;
+  email: string;
+  password: string;
 }
 
-export const registerUser  = async (userData: UserData) => {
-    const response = await axios.post('/users/register', userData);
-    return response.data;
+// ✅ Inscription d'un utilisateur
+export const registerUser = async (userData: UserData) => {
+  const response = await axios.post('/users/register', userData);
+  return response.data;
 };
 
-export const loginUser  = async (credentials: { email: string; password: string }) => {
-    const response = await axios.post('/users/login', credentials);
-    return response.data;
+// ✅ Connexion d'un utilisateur
+export const loginUser = async (credentials: { email: string; password: string }) => {
+  const response = await axios.post('/users/login', credentials);
+  const { token } = response.data;
+  localStorage.setItem('token', token);
+  return token;
 };

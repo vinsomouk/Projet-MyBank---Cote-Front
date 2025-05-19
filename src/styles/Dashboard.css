@@ -1,0 +1,95 @@
+/* src/pages/Dashboard.css */
+.dashboard-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+}
+
+.dashboard-header button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dashboard-balance {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.dashboard-card {
+  background: linear-gradient(135deg, #59E5A9, #45c292);
+  color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.card-number {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.card-label {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-actions button {
+  flex: 1;
+  background-color: #59E5A9;
+  color: white;
+  padding: 0.7rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dashboard-transactions h3 {
+  margin-bottom: 1rem;
+}
+
+.dashboard-transactions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-transactions li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.tx-negative {
+  color: #d9534f;
+}
+
+.tx-positive {
+  color: #5cb85c;
+}

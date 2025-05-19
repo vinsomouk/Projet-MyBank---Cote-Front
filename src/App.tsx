@@ -1,16 +1,44 @@
-// src/App.tsx
-import React from 'react';
-import Register from './components/Register';
-import AddTransaction from './components/AddTransaction';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import RequireAuth from './components/RequireAuth';
 
-const App: React.FC = () => {
-    return (
-        <div>
-            <h1>MyBank</h1>
-            <Register />
-            <AddTransaction />
-        </div>
-    );
-};
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+
+        {/* Pages protégées */}
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+        {/* Redirection racine vers /dashboard si connecté */}
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
