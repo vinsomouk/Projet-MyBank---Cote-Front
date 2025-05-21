@@ -1,0 +1,39 @@
+.add-money-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.add-money-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.add-money-form h2 {
+  text-align: center;
+}
+
+.add-money-form input,
+.add-money-form select {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.add-money-form button {
+  background-color: #59E5A9;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-money-form button:hover {
+  background-color: #45c292;
+}

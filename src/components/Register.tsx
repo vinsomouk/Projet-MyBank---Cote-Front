@@ -19,7 +19,7 @@ const Register: React.FC = () => {
       setError('');
       navigate('/login');
     } catch (error) {
-      setError('Failes to create an account');
+      setError('Failed to create an account');
       setSuccess('');
     }
   };

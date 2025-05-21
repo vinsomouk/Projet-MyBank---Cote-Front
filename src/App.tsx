@@ -1,21 +1,55 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import RequireAuth from './components/RequireAuth';
+// src/App.tsx
 
-function App() {
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Login from './pages/Login';
+import Register from './components/Register';
+import Dashboard from './pages/Dashboard';
+import AddMoney from './pages/AddMoney';
+import SendMoney from './pages/SendMoney';
+import Profile from './pages/Profile';
+
+import RequireAuth from './components/RequireAuth';
+import PrivateLayout from './layouts/PrivateLayout';
+
+const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
 
-        {/* Pages protégées */}
+        {/* Public routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected routes with layout */}
         <Route
           path="/dashboard"
           element={
             <RequireAuth>
-              <Dashboard />
+              <PrivateLayout>
+                <Dashboard />
+              </PrivateLayout>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/add-money"
+          element={
+            <RequireAuth>
+              <PrivateLayout>
+                <AddMoney />
+              </PrivateLayout>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/send-money"
+          element={
+            <RequireAuth>
+              <PrivateLayout>
+                <SendMoney />
+              </PrivateLayout>
             </RequireAuth>
           }
         />
@@ -23,22 +57,28 @@ function App() {
           path="/profile"
           element={
             <RequireAuth>
-              <Profile />
+              <PrivateLayout>
+                <Profile />
+              </PrivateLayout>
             </RequireAuth>
           }
         />
-        {/* Redirection racine vers /dashboard si connecté */}
+
+        {/* Default redirect to dashboard if logged in */}
         <Route
           path="/"
           element={
             <RequireAuth>
-              <Dashboard />
+              <PrivateLayout>
+                <Dashboard />
+              </PrivateLayout>
             </RequireAuth>
           }
         />
+        
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
