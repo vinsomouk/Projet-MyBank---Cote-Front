@@ -9,14 +9,19 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await loginUser({ email, password });
-      navigate('/dashboard');
-    } catch (err) {
-      alert('Wrong Credentials');
-    }
-  };
+  e.preventDefault();
+  try {
+    const response = await loginUser({ 
+      email: email.trim(), 
+      password: password 
+    });
+    console.log('Login success:', response);
+    navigate('/dashboard');
+  } catch (err: any) {
+    console.error('Login error:', err);
+    alert(err.error || 'Login failed. Please check console for details.');
+  }
+};
 
   return (
     <div className="login-container">

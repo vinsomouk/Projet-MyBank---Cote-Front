@@ -1,22 +1,32 @@
-import axios from '../axiosConfig';
+import axiosInstance from '../axiosConfig';
 
-// ✅ Interface pour l'inscription
 export interface UserData {
   name: string;
   email: string;
   password: string;
 }
 
-// ✅ Inscription d'un utilisateur
-export const registerUser = async (userData: UserData) => {
-  const response = await axios.post('/users/register', userData);
-  return response.data;
-};
-
-// ✅ Connexion d'un utilisateur
 export const loginUser = async (credentials: { email: string; password: string }) => {
-  const response = await axios.post('/users/login', credentials);
-  const { token } = response.data;
-  localStorage.setItem('token', token);
-  return token;
+  try {
+    const response = await axiosInstance.post('/login', credentials, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      transformRequest: [(data) => JSON.stringify(data)],
+    });
+
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      return response.data;
+    }
+    throw new Error('No token received');
+  } catch (error: any) {
+    console.error('Login error details:', {
+      request: error.config?.data,
+      response: error.response?.data
+    });
+    throw error.response?.data || { error: 'Login failed' };
+  }
 };
